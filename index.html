@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atout Soleil 2026 — Comparateur Budget</title>
-    <meta name="description" content="Comparateur interactif de propositions événementielles Atout Soleil 2026">
+    <title>Fromont Briens — Séminaire 2026 — Comparateur Budget</title>
+    <meta name="description" content="Comparateur interactif de propositions séminaire Fromont Briens 2026">
 
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -71,166 +71,146 @@
 
         // --- DATA EXTRACTED FROM PDFs ---
         const budgetData = {
-            bnf: {
-                id: 'bnf',
-                name: "BNF",
-                totalTTC: 129807.11,
-                totalHT: 108265.54,
-                honorairesHT: 9842.32,
+            palma: {
+                id: 'palma',
+                name: "Palma de Majorque",
+                totalTTC: 75650.89,
+                totalHT: 63110.17,
+                honorairesHT: 5938.63,
                 categories: {
-                    lieux: 32768.16,
-                    restauration: 27350.69,
-                    technique: 11521.87,
-                    transports: 7800.00,
-                    extras: 14667.50,
-                    accompagnement: 4315.00
+                    hotellerie: 15532.92,
+                    restauration: 10829.50,
+                    activites: 4997.18,
+                    transport: 18128.94,
+                    rse: 0.00,
+                    accompagnement: 7683.00
                 },
                 details: {
-                    lieux: [
-                        { desc: "Location de salle ateliers Marriott Rive Gauche (3 salles)", price: 7840.91, subDesc: "3 salles de sous-commissions" },
-                        { desc: "Location de salle cérémonie et cocktail BNF", price: 8125.00, subDesc: "Bibliothèque Nationale de France (14h - 02h)\nCérémonie : Grand Auditorium\nCocktail : Grand Foyer" },
-                        { desc: "Nuitées Marriott Rive Gauche (60 pax)", price: 16295.25, subDesc: "Chambre Supérieure Single BB, petit-déjeuner inclus" },
-                        { desc: "Taxe de séjour Marriott Rive Gauche (60 pax)", price: 507.00 }
+                    hotellerie: [
+                        { desc: "Chambre d'hôtel single B&B", price: 7349.96, subDesc: "Hôtel Artmadams\nDeux nuitées pour 21 personnes" },
+                        { desc: "Chambre d'hôtel twin B&B", price: 7819.97, subDesc: "Hôtel Artmadams\nDeux nuitées pour 34 personnes (17 chambres)" },
+                        { desc: "Taxe de séjour", price: 363.00, subDesc: "Pour 2 nuitées" }
                     ],
                     restauration: [
-                        { desc: "Déjeuner d'équipe Bistrot Palyma", price: 732.94, subDesc: "Bistrot Palyma (Marriott Rive Gauche)" },
-                        { desc: "Café d'accueil ateliers Marriott Rive Gauche", price: 1023.00, subDesc: "Foyer Studio\n2 pièces" },
-                        { desc: "Pause café ateliers Marriott Rive Gauche", price: 1363.50, subDesc: "Foyer Studio\n4 pièces" },
-                        { desc: "Cocktail dînatoire - repas Les Retraiteurs", price: 11750.00, subDesc: "Forfait incluant un cocktail 19 pièces, animations culinaires salées, le service et le matériel et mobilier de service" },
-                        { desc: "Cocktail dînatoire - boissons softs", price: 1050.00, subDesc: "Eaux, limonades et jus de fruits" },
-                        { desc: "Cocktail dînatoire - boissons alcoolisées", price: 4818.75, subDesc: "Sélection de vins et champagne, incluant la verrerie" },
-                        { desc: "Cocktail dînatoire - Mobilier", price: 6612.50, subDesc: "20 x Mange-debout croisé acier plateau blanc 65 x 65 cm H 110 cm\n50 x Tabouret industriel noir H 76 cm" }
+                        { desc: "Dîner J1 - Patron Lunares", price: 2722.50, subDesc: "Entrée - plat - dessert - eaux - vins" },
+                        { desc: "Déjeuner J2 - repas Casa Esment", price: 2178.00, subDesc: "Tapas à partager - desserts - eaux - cafés / thés" },
+                        { desc: "Déjeuner J2 - boissons Casa Esment", price: 605.00, subDesc: "Softs - Vins écologiques 1 bouteille pour 4 personnes" },
+                        { desc: "Dîner J2 - repas Cuit", price: 2783.00, subDesc: "Entrée - plat - dessert - eaux - vins - café" },
+                        { desc: "Dîner J2 - boissons Cuit", price: 363.00, subDesc: "Softs - bières (Option)" },
+                        { desc: "Déjeuner J3 - ArtMadams", price: 2541.00, subDesc: "Entrée - plat - dessert - eaux - café - thé - vins" }
                     ],
-                    technique: [
-                        { desc: "Audiovisuel", price: 7907.50, subDesc: "Forfait écrans, sonorisation et lumière, incluant le matériel, le personnel et la logistique pour l'ensemble des espaces" },
-                        { desc: "Forfait mobilier scénique", price: 0.00, subDesc: "Offert" },
-                        { desc: "Mobilier scénique : étagère trophées", price: 961.87 },
-                        { desc: "Agent de sécurité", price: 250.00, subDesc: "Environ 23 euros HT de 06h à 21h et 25 euros HT de 21h à 6h pour une prestation minimum de 4h" },
-                        { desc: "Hôtes(ses)", price: 1750.00, subDesc: "Hôtes(ses) étudiants et retraités pour l'accueil et le vestiaire" },
-                        { desc: "Matériel de vestiaire", price: 300.00 },
-                        { desc: "Frais de personnel heure de jour", price: 80.00, subDesc: "Estimation tarifaire soumise à évolution\nFrais de personnel après 19h" },
-                        { desc: "Frais de personnel heure de nuit", price: 122.50, subDesc: "Estimation tarifaire soumise à évolution\nFrais de personnel après 22h" },
-                        { desc: "Transport de matériel", price: 150.00 },
-                        { desc: "Infographiste (Option)", price: 600.00, subDesc: "A partir de" }
+                    activites: [
+                        { desc: "Team building RSE", price: 2299.00, subDesc: "Atelier d'agriculture écologique" },
+                        { desc: "Activité culturelle", price: 2698.18, subDesc: "Découverte de la ville à vélo avec un itinéraire et des guides" }
                     ],
-                    transports: [
-                        { desc: "Provision transports", price: 6000.00, subDesc: "Billets d'avion, de train et réservation de taxi\nA ajuster au réel (prix des billets et frais d'émission des billets)" },
-                        { desc: "Frais de gestion des transports", price: 1800.00, subDesc: "3 jours de gestion" }
+                    transport: [
+                        { desc: "Billets d'avion Lyon - Palma de Majorque", price: 8369.40, subDesc: "Sous réserve de disponibilité et de l'évolution du tarif\nBagage à main et cabine uniquement" },
+                        { desc: "Frais d'émission des billets Lyon", price: 708.18, subDesc: "Aller-retour" },
+                        { desc: "Billets d'avion Paris Orly - Palma de Majorque", price: 6130.80, subDesc: "Sous réserve de disponibilité et de l'évolution du tarif\nBagage à main et cabine uniquement" },
+                        { desc: "Frais d'émission des billets Paris", price: 518.76, subDesc: "Aller-retour" },
+                        { desc: "Temps homme gestion des transports", price: 600.00 },
+                        { desc: "Transferts", price: 1801.80, subDesc: "Aller retour aéroport et activité" }
                     ],
-                    extras: [
-                        { desc: "Animation - performance Salt & Pepper", price: 10680.00, subDesc: "Animation de chorale par Salt & Pepper\nPerformance du groupe durant la cérémonie (interventions à définir)" },
-                        { desc: "Animation - caricaturistes", price: 3562.50, subDesc: "Présence de 3 caricaturistes durant le cocktail\nLes convives repartent avec leur caricature directement" },
-                        { desc: "Badges", price: 325.00, subDesc: "Badges sur papier recyclé pour 200 personnes" },
-                        { desc: "Création graphique", price: 100.00, subDesc: "Badges (2 aller-retours pour modification inclus)" },
-                        { desc: "Intervention Oldyssey (Option)", price: 2340.00, subDesc: "En présence de Clément Boxebeld, fondateur de Oldyssey et auteur du livre Vieillir ensemble" },
-                        { desc: "Cadeaux livres (Option)", price: 1027.00, subDesc: "Vieillir ensemble. Un tour du monde des solutions qui rapprochent les générations" },
-                        { desc: "Sac kraft (Option)", price: 212.50, subDesc: "Pour la remise du cadeau\nPersonnalisé" }
+                    rse: [
+                        { desc: "Goodies passeport RSE (Option)", price: 495.00 },
+                        { desc: "Crayons à planter (Option)", price: 181.50 },
+                        { desc: "Tampons passeport (Option)", price: 48.84, subDesc: "Monture en bois" },
+                        { desc: "Création graphique (Option)", price: 200.00 },
+                        { desc: "Bilan carbone (Option)", price: 1800.00 }
                     ],
                     accompagnement: [
-                        { desc: "Temps homme Weever", price: 3600.00, subDesc: "Présence de 3 Weevers pour la gestion de votre événement" },
-                        { desc: "VRH - Restauration", price: 120.00, subDesc: "Déjeuner et dîner des Weevers sur l'événement" },
-                        { desc: "VHR - Transport", price: 195.00, subDesc: "Transport des Weevers" },
-                        { desc: "Frais de repérage", price: 400.00, subDesc: "1 Weever sur les lieux de votre choix" }
+                        { desc: "Temps homme Weever", price: 6000.00, subDesc: "Présence de 2 Weevers sur votre événement\nForfait jour avant minuit : 900€\nForfait jour dimanche avant minuit : 1 200€" },
+                        { desc: "VHR - Hébergement", price: 550.00 },
+                        { desc: "VHR - Transport", price: 858.00 },
+                        { desc: "VHR - Restauration", price: 275.00, subDesc: "5 repas" }
                     ]
                 }
             },
-            cirque: {
-                id: 'cirque',
-                name: "Cirque d'Hiver",
-                totalTTC: 147841.00,
-                totalHT: 123261.66,
-                honorairesHT: 11205.61,
+            casablanca: {
+                id: 'casablanca',
+                name: "Casablanca",
+                totalTTC: 80606.81,
+                totalHT: 67172.35,
+                honorairesHT: 6393.59,
                 categories: {
-                    lieux: 40191.73,
-                    restauration: 25033.39,
-                    technique: 26352.59,
-                    transports: 7800.00,
-                    extras: 8363.35,
-                    accompagnement: 4315.00
+                    hotellerie: 12849.03,
+                    restauration: 10053.56,
+                    activites: 7205.06,
+                    transport: 23172.29,
+                    rse: 0.00,
+                    accompagnement: 7498.82
                 },
                 details: {
-                    lieux: [
-                        { desc: "Location de la verrière ateliers (Hôtel Provinces Opéra)", price: 252.08, subDesc: "Semi privatisation pour l'accueil des ateliers" },
-                        { desc: "Location de salles ateliers (4 salles, Hôtel Provinces Opéra)", price: 2016.68, subDesc: "4 salles de réunion" },
-                        { desc: "Location de salle cérémonie et cocktail (Cirque d'Hiver)", price: 24200.00, subDesc: "Cirque d'Hiver, forfait incluant (17h - 00h) :\n- la salle du Cirque (chapiteau)\n- le Bar de l'Impératrice : cocktail\n- le régisseur du Cirque d'Hiver\n- les hôtesses du Cirque d'Hiver pour gérer le placement en salle et l'orientation du public\n- un agent du Cirque d'Hiver à l'entrée principale pendant les horaires publiques\n- le personnel d'entretien" },
-                        { desc: "Nuitée Chambre individuelle Confort (14 pax)", price: 3018.37, subDesc: "Hôtel Provinces Opéra\nChambre Supérieure Single BB, petit-déjeuner inclus" },
-                        { desc: "Nuitée Chambre individuelle Privilège (6 pax)", price: 1352.97, subDesc: "Hôtel Provinces Opéra\nChambre Supérieure Single BB, petit-déjeuner inclus" },
-                        { desc: "Nuitée Chambre double Confort à usage individuel (40 pax)", price: 9019.82, subDesc: "Hôtel Provinces Opéra\nChambre Supérieure Single BB, petit-déjeuner inclus" },
-                        { desc: "Taxe de séjour (60 pax)", price: 331.80, subDesc: "Hôtel Provinces Opéra" }
+                    hotellerie: [
+                        { desc: "Chambre standard single B&B", price: 6630.16, subDesc: "Hôtel Hyatt Regency\nDeux nuitées pour 21 personnes (21 chambres)\nTaxe de séjour inclus" },
+                        { desc: "Chambre standard twin B&B", price: 6218.87, subDesc: "Hôtel Hyatt Regency\nDeux nuitées pour 34 personnes (17 chambres)\nTaxe de séjour inclus" }
                     ],
                     restauration: [
-                        { desc: "Déjeuner d'équipe Hôtel Provinces Opéra", price: 527.98, subDesc: "2 plats, eaux, café" },
-                        { desc: "Café d'accueil ateliers", price: 395.67, subDesc: "Hôtel Provinces Opéra\nBoissons chaudes, jus de fruits, mignardises" },
-                        { desc: "Pause gourmande ateliers", price: 659.93, subDesc: "Hôtel Provinces Opéra\nBoissons chaudes, jus de fruits, verrines de fruits frais et mignardises maison" },
-                        { desc: "Cocktail dînatoire - repas et softs", price: 10285.00, subDesc: "18 pièces avec animations culinaires, rafraichissements inclus" },
-                        { desc: "Cocktail dînatoire - boissons alcoolisées", price: 653.40, subDesc: "Vins (1 bouteille pour 4 personnes)" },
-                        { desc: "Cocktail - matériel et logistique", price: 5033.60, subDesc: "Matériel complet, art de la table et logistique" },
-                        { desc: "Cocktail - personnel de service", price: 5783.80 },
-                        { desc: "Cocktail - champagne", price: 1694.00, subDesc: "1 bouteille pour 6 personnes" },
-                        { desc: "Cocktail - ateliers culinaires (Option)", price: 3388.00, subDesc: "1 cocotte chaude (en remplacement du plat chaud) et 1 pièce lunch sucrée (en complément du menu)\nMatériel de service et personnel inclus" }
+                        { desc: "Dîner J1 - Braise", price: 2124.76, subDesc: "Dîner buffet incluant les boissons softs" },
+                        { desc: "Dîner J1 - Braise boissons alcoolisées", price: 403.70, subDesc: "9 bouteilles soit 1 verre de vin par personne" },
+                        { desc: "Soirée J1 - Bliss Rooftop (Option)", price: 1510.08, subDesc: "Forfait open bar premium 1h00\nJus de fruits, eaux minérales, sodas, bière, vin blanc et rouge, café et thé\nLa deuxième heure d'open bar à 22,42 €" },
+                        { desc: "Déjeuner J2 - La Sqala", price: 2359.50, subDesc: "Déjeuner incluant les boissons softs" },
+                        { desc: "Dîner J2 - Restaurant Dar Dada", price: 3082.20, subDesc: "Menu à partager et boissons softs" },
+                        { desc: "Dîner J2 - Dar Dada boissons alcoolisées", price: 1148.40, subDesc: "Forfait vin ou bière" },
+                        { desc: "Soirée J2 - La Bodega (Option)", price: 29.70, subDesc: "2 verres par personne" },
+                        { desc: "Déjeuner J3 - French Brassery", price: 935.00, subDesc: "Déjeuner au sein de l'hôtel incluant un verre de vin pour les parisiens" }
                     ],
-                    technique: [
-                        { desc: "Consommation gaz/électricité", price: 605.00, subDesc: "Cirque d'Hiver, forfait par jour de location" },
-                        { desc: "Toiles tendues (Option)", price: 2420.00, subDesc: "Cirque d'Hiver, projection sur les fauteuils à gauche et à droite de l'entrée des Artistes" },
-                        { desc: "Projection sur toiles tendues (Option)", price: 1562.11, subDesc: "2 gobos pour projection" },
-                        { desc: "Forfait technique sonorisation et lumières", price: 13631.86, subDesc: "Matériel, consommables, logistique et personnel pour les 3 espaces (couloir, chapiteau, bar)" },
-                        { desc: "Forfait technique vidéo", price: 6688.28, subDesc: "Matériel, consommables, logistique et personnel" },
-                        { desc: "Forfait mobilier scénique", price: 0.00, subDesc: "Offert" },
-                        { desc: "Mobilier scénique : étagère trophées", price: 961.87 },
-                        { desc: "Réseau wifi (Option)", price: 3388.00 },
-                        { desc: "Transport de matériel", price: 150.00 },
-                        { desc: "Equipe de sécurité", price: 1060.69, subDesc: "De 17h30 à 23h30" },
-                        { desc: "Hôtes(ses) vestiaire et accueil", price: 2662.00, subDesc: "4 hôtes(ses)" },
-                        { desc: "Matériel vestiaire", price: 592.90, subDesc: "Cirque d'Hiver" },
-                        { desc: "Infographiste (Option)", price: 600.00, subDesc: "Tarif à partir de 600€ HT\nInfographie du contenu de la cérémonie" }
+                    activites: [
+                        { desc: "Guides 1/2 journée", price: 660.00, subDesc: "Guides local sur une demi journée pour vous faire visiter l'Ancienne Médina" },
+                        { desc: "Visite Mosquée Hassan II", price: 781.06, subDesc: "Avec un guide" },
+                        { desc: "Team-building : Plantation d'arbre", price: 5764.00, subDesc: "Gestion complète d'une activité environnementale à Casablanca pour 55 participants, comprenant la plantation d'arbres avec un centre éducatif pour la jeunesse" },
+                        { desc: "Team-building : Bike builders (Option)", price: 6027.12, subDesc: "1 vélo par équipe de maximum 8 personnes\nDJ & sonorisation\nAnimateurs" }
                     ],
-                    transports: [
-                        { desc: "Provision transports", price: 6000.00, subDesc: "Billets d'avion, de train et réservation de taxi\nA ajuster au réel (prix des billets et frais d'émission des billets)" },
-                        { desc: "Frais de gestion des transports", price: 1800.00, subDesc: "3 jours de gestion" }
+                    transport: [
+                        { desc: "Billets d'avion Lyon - Casablanca", price: 13935.53, subDesc: "Aller - Départ : 12h50 - Arrivée : 14h40\nRetour - Départ : 14h55 - Arrivée : 18h40\nSous réserve de disponibilité et de l'évolution du tarif\nBagage à main et cabine" },
+                        { desc: "Frais d'émission des billets Lyon", price: 1179.16 },
+                        { desc: "Billets d'avion Paris Orly - Casablanca", price: 6318.00, subDesc: "Aller départ : 14h40 - Arrivée : 16h50\nRetour départ : 16h55 - Arrivée : 20h55\nSous réserve de disponibilité et de l'évolution du tarif\nBagage à main et cabine" },
+                        { desc: "Frais d'émission des billets Paris", price: 534.60 },
+                        { desc: "Temps homme gestion des transports", price: 600.00 },
+                        { desc: "Transferts train aller", price: 302.50 },
+                        { desc: "Transferts train retour", price: 302.50 }
                     ],
-                    extras: [
-                        { desc: "Animation numéro de Cirque n°1", price: 3630.00, subDesc: "A définir ensemble (musique sur bande son, certains numéros requièrent l'aide de garçons de piste, un budget supplémentaire est à prévoir)" },
-                        { desc: "Animation numéro de Cirque n°2 (Option)", price: 3630.00, subDesc: "A définir ensemble (musique sur bande son, certains numéros requièrent l'aide de garçons de piste, un budget supplémentaire est à prévoir)" },
-                        { desc: "Animation groupe musical (Jazz New Orleans)", price: 2420.00, subDesc: "2 heures de prestation" },
-                        { desc: "Badges", price: 325.00, subDesc: "Badges sur papier recyclé pour 200 personnes" },
-                        { desc: "Création graphique", price: 100.00, subDesc: "Badges (2 aller-retours pour modification inclus)" },
-                        { desc: "Cadeaux - Cartes à jouer", price: 1675.85, subDesc: "Cartes à jouer personnalisées, infographie et frais de port inclus" },
-                        { desc: "Sac kraft", price: 212.50, subDesc: "Pour la remise du cadeau\nPersonnalisé" }
+                    rse: [
+                        { desc: "Goodies passeport RSE (Option)", price: 495.00 },
+                        { desc: "Crayons à planter (Option)", price: 181.50 },
+                        { desc: "Tampons passeport (Option)", price: 48.11, subDesc: "Monture en bois" },
+                        { desc: "Création graphique (Option)", price: 200.00 },
+                        { desc: "Bilan carbone (Option)", price: 1800.00 }
                     ],
                     accompagnement: [
-                        { desc: "Temps homme Weever", price: 3600.00, subDesc: "Présence de 3 Weevers pour la gestion de votre événement" },
-                        { desc: "VRH - Restauration", price: 120.00, subDesc: "Déjeuner et dîner des Weevers sur l'événement" },
-                        { desc: "VHR - Transport", price: 195.00, subDesc: "Transport des Weevers" },
-                        { desc: "Frais de repérage", price: 400.00, subDesc: "1 Weever sur les lieux de votre choix" }
+                        { desc: "Temps homme Weever", price: 6000.00, subDesc: "Présence de 2 Weevers sur votre événement\nForfait jour avant minuit : 900€\nForfait jour dimanche avant minuit : 1 200€" },
+                        { desc: "VHR - Hébergement", price: 365.82 },
+                        { desc: "VHR - Transport", price: 858.00 },
+                        { desc: "VHR - Restauration", price: 275.00, subDesc: "5 repas" }
                     ]
                 }
             }
         };
 
         const categoryLabels = {
-            lieux: "Lieux & Hébergement",
+            hotellerie: "Hôtellerie",
             restauration: "Restauration",
-            technique: "Technique",
-            transports: "Transports",
-            extras: "Extras & Animations",
+            activites: "Activités",
+            transport: "Transport",
+            rse: "RSE",
             accompagnement: "Accompagnement (Weever)"
         };
 
         const categoryColors = {
-            lieux: "bg-blue-500",
+            hotellerie: "bg-blue-500",
             restauration: "bg-orange-500",
-            technique: "bg-purple-500",
-            transports: "bg-slate-500",
-            extras: "bg-pink-500",
+            activites: "bg-purple-500",
+            transport: "bg-slate-500",
+            rse: "bg-emerald-500",
             accompagnement: "bg-teal-500"
         };
 
         const textColors = {
-            lieux: "text-blue-500",
+            hotellerie: "text-blue-500",
             restauration: "text-orange-500",
-            technique: "text-purple-500",
-            transports: "text-slate-500",
-            extras: "text-pink-500",
+            activites: "text-purple-500",
+            transport: "text-slate-500",
+            rse: "text-emerald-500",
             accompagnement: "text-teal-500"
         };
 
@@ -325,8 +305,8 @@
                                 <thead className="bg-gray-50">
                                     <tr>
                                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Poste de Dépense (HT)</th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">BNF</th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Cirque d'Hiver</th>
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Palma de Majorque</th>
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Casablanca</th>
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
@@ -356,7 +336,7 @@
 
                                     {/* Honoraires Row */}
                                     <tr className="bg-gray-50 border-t-2 border-gray-200">
-                                        <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Honoraires Agence (10%)</td>
+                                        <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Honoraires Agence</td>
                                         {venues.map(venue => (
                                             <td key={`hon-${venue.id}`} className="px-6 py-4 whitespace-nowrap text-right text-gray-600">
                                                 {formatEur(venue.honorairesHT)}
@@ -464,7 +444,7 @@
 
                             <div className="bg-gray-50 rounded-lg border border-gray-200 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                                 <div>
-                                    <h4 className="font-semibold text-gray-900">Honoraires Weever (10%)</h4>
+                                    <h4 className="font-semibold text-gray-900">Honoraires Weever</h4>
                                     <p className="text-sm text-gray-500">Calculés sur le sous-total HT</p>
                                 </div>
                                 <div className="text-right">
@@ -502,7 +482,7 @@
                                 </div>
 
                                 <div className="mt-6 bg-blue-50 text-blue-800 text-xs p-3 rounded border border-blue-100">
-                                    <strong>Note:</strong> Les montants indiqués (notamment les transports) sont provisionnels et seront ajustés au réel.
+                                    <strong>Note:</strong> Les montants indiqués (notamment les transports) sont provisionnels et seront ajustés au réel. Les postes RSE sont en option.
                                 </div>
                             </div>
                         </div>
@@ -523,9 +503,9 @@
                             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                                 <div>
                                     <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                                        <span className="text-yellow-500">☀️</span> Atout Soleil 2026
+                                        <span className="text-yellow-500">☀️</span> Fromont Briens — Séminaire 2026
                                     </h1>
-                                    <p className="text-sm text-gray-500">Comparateur interactif de propositions événementielles</p>
+                                    <p className="text-sm text-gray-500">Comparateur interactif de propositions séminaire</p>
                                 </div>
 
                                 {/* Navigation Tabs */}
@@ -562,6 +542,7 @@
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
+
 </body>
 
 </html>
